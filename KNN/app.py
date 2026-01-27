@@ -196,12 +196,16 @@ st.markdown(
 
 # -----------------------------
 # Load dataset
-# -----------------------------
-@st.cache_data
-def load_data():
-    return pd.read_csv("credit_risk_dataset.csv")  # keep this file in same folder
+st.subheader("📂 Upload Dataset")
+uploaded_file = st.file_uploader("Upload credit_risk_dataset.csv", type=["csv"])
 
-df = load_data()
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    st.success("✅ Dataset uploaded successfully!")
+else:
+    st.warning("⚠️ Please upload the dataset to continue.")
+    st.stop()
+
 
 # -----------------------------
 # Validate dataset columns
@@ -341,3 +345,4 @@ if predict_btn:
     st.info("This decision is based on similarity with nearby customers in feature space.")
 else:
     st.info("📌 Enter details in the sidebar and click **Predict Customer Risk** to see the result.")
+
