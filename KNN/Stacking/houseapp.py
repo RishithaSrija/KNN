@@ -398,15 +398,17 @@ div[data-testid="stAlert"]{
 # -------------------------------
 @st.cache_data
 def load_data():
-    file_path = "kc_house_data.csv"
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(base_dir, "kc_house_data.csv")
+
+    st.write("Looking for:", file_path)  # temporary debug
+
     if not os.path.exists(file_path):
-        st.error("❌ Dataset file not found! Upload kc_house_data.csv in the same folder as this app file.")
+        st.error(f"Dataset not found: {file_path}")
         st.stop()
+
     return pd.read_csv(file_path)
-
-
-df = load_data()
-
+load_data()
 
 # -------------------------------
 # TITLE
