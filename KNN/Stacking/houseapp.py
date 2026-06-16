@@ -408,7 +408,7 @@ def load_data():
         st.stop()
 
     return pd.read_csv(file_path)
-load_data()
+df=load_data()
 
 # -------------------------------
 # TITLE
